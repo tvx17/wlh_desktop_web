@@ -1,0 +1,12 @@
+export default {
+  application: 'Anwendung',
+  projects   : 'Projekte',
+  user       : 'Benutzer/-innen',
+  project    : 'Projekt',
+  settings   : 'Einstellungen',
+  export     : 'Exportieren',
+  content    : 'Inhalt',
+  characters : 'Charaktere',
+  objects    : 'Objekte',
+  locations  : 'Orte'
+};
