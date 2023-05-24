@@ -36,9 +36,9 @@ const methods = {
     } else {
     }
   },
-  delete     : async (table, data) => {
+  delete     : async (table, id) => {
     if (runMode === 'app') {
-      return await window.db.delete(table, data);
+      return await window.db.delete(table, id);
     } else {
     }
   },

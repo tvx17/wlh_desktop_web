@@ -8,10 +8,11 @@ let isNew = false;
 const dataDir = path.join(os.homedir(), 'wlh');
 const databaseFile = path.join(dataDir, 'dwlhC.wd');
 
-const dbReference = new Sequelize({
-                                    dialect: 'sqlite',
-                                    storage: databaseFile
-                                  });
+const dbReference = new Sequelize(
+  {
+    dialect: 'sqlite',
+    storage: databaseFile
+  });
 
 
 const methods = {
@@ -30,7 +31,8 @@ const projects = dbReference.define('projects', {
   summary    : {type: DataTypes.STRING(100), allowNull: false},
   description: {type: DataTypes.TEXT, allowNull: true},
   owner      : {type: DataTypes.INTEGER, allowNull: false},
-  isActive   : {type: DataTypes.BOOLEAN, allowNull: false, defaultValue: true}
+  isActive   : {type: DataTypes.BOOLEAN, allowNull: false, defaultValue: true},
+  deleted    : {type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false},
 });
 
 const users = dbReference.define(
@@ -40,24 +42,29 @@ const users = dbReference.define(
     firstname: {type: DataTypes.STRING(100), allowNull: false},
     lastname : {type: DataTypes.STRING(100), allowNull: false},
     pseudonym: {type: DataTypes.STRING(100), allowNull: false},
-    isActive : {type: DataTypes.BOOLEAN, allowNull: false, defaultValue: true}
+    sex      : {type: DataTypes.STRING(50), allowNull: false},
+    isActive : {type: DataTypes.BOOLEAN, allowNull: false, defaultValue: true},
+    deleted  : {type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false},
   });
 
 
 const characters = dbReference.define('characters', {
   summary    : {type: DataTypes.STRING(100), allowNull: false},
   description: {type: DataTypes.TEXT, allowNull: true},
-  isActive   : {type: DataTypes.BOOLEAN, allowNull: false, defaultValue: true}
+  isActive   : {type: DataTypes.BOOLEAN, allowNull: false, defaultValue: true},
+  deleted    : {type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false},
 });
 const locations = dbReference.define('locations', {
   summary    : {type: DataTypes.STRING(100), allowNull: false},
   description: {type: DataTypes.TEXT, allowNull: true},
-  isActive   : {type: DataTypes.BOOLEAN, allowNull: false, defaultValue: true}
+  isActive   : {type: DataTypes.BOOLEAN, allowNull: false, defaultValue: true},
+  deleted    : {type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false},
 });
 const objects = dbReference.define('objects', {
   summary    : {type: DataTypes.STRING(100), allowNull: false},
   description: {type: DataTypes.TEXT, allowNull: true},
-  isActive   : {type: DataTypes.BOOLEAN, allowNull: false, defaultValue: true}
+  isActive   : {type: DataTypes.BOOLEAN, allowNull: false, defaultValue: true},
+  deleted    : {type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false},
 });
 // const structure = dbReference.define('structure', {
 //   name: {type: DataTypes.STRING(100), allowNull: false},

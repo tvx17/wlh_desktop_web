@@ -10,7 +10,7 @@
     @row-click="m.selected"
   >
     <template v-slot:top-left>
-      <q-btn :label="props.new" @click="emitter('createNew')" dense/>
+      <q-btn :label="props.newButtonText" @click="emitter('createNew')" dense flat/>
     </template>
     <template v-slot:top-right>
       <q-input borderless dense debounce="300" v-model="filter" placeholder="Suchen">
@@ -30,8 +30,8 @@ import requests from 'src/app/requests';
 import {onMounted, ref, watch} from 'vue';
 
 
-const props = defineProps(['dataTable', 'title', 'new', 'update']);
-const emitter = defineEmits(['selectedRow', 'createNew']);
+const props = defineProps(['dataTable', 'title', 'new', 'update', 'newButtonText']);
+const emitter = defineEmits(['selectedRow', 'createNew', 'updated']);
 
 const columns = [
   {
@@ -51,19 +51,19 @@ const selectedId = ref();
 
 const m = {
   load    : async () => {
-    tableData.value = await requests.get(props['dataTable'], {isActive: true});
+    tableData.value = await requests.get(props['dataTable'], {deleted: false});
   },
   selected: (evt, row, index) => {
     emitter('selectedRow', row.id);
   }
 };
 
-watch(props.update, (newValue, oldValue) => {
-  console.log(newValue);
-  if (newValue) {
-    m.load();
-  }
 
+watch(() => props['update'], async (newValue, oldValue) => {
+  if (newValue) {
+    await m.load();
+    emitter('updated');
+  }
 });
 
 

@@ -1,5 +1,4 @@
 import {characters, dbReference, isNew, locations, methods, objects, projects, users} from 'app/src-electron/dbReference';
-import {iRouter} from 'app/src-electron/interfaces/router';
 import {iTables} from 'app/src-electron/interfaces/tables';
 
 export default {
@@ -64,8 +63,9 @@ export default {
 
     //return await iRouter[table]['put'](data);
   },
-  delete    : async (table, data) => {
-    return await iRouter[table]['delete'](data);
+  delete    : async (table, id) => {
+    await iTables[table].update({deleted: true}, {where: {id: id}});
+    //await iTables[table].destroy({where: {id: id}});
   },
   //router    : async (table, method, args) => {
   //  return await iRouter[table][method](args);

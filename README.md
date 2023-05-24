@@ -1,7 +1,13 @@
 # WLH - Writer's little helper
 Desktop version
-
 Web version
+
+## What is this
+I write books as my hobby. I have not been satisfied with the solutions that support me in this. One solution didn't offer this, the other solution didn't offer that.
+So I started to write my own solution, which supports me from A to Z in writing my books.
+The result was the idea for WLH (Writer's little helper).
+Currently, the programme is still in development and hopefully there will be a first version soon.
+
 
 ## Install the dependencies
 ```bash
